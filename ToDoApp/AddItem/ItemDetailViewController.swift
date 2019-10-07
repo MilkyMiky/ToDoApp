@@ -14,7 +14,7 @@ protocol AddItemViewControllerDelegate : class {
     
     func addItemViewController(_ controller: ItemDetailViewController, didFinishAdding item: CheckListItem)
     
-    func addItemViewController(_ controller: ItemDetailViewController, didFinishEditing item: CheckListItem)
+    func editItemViewController(_ controller: ItemDetailViewController, didFinishEditing item: CheckListItem)
 }
 
 class ItemDetailViewController: UITableViewController {
@@ -30,7 +30,7 @@ class ItemDetailViewController: UITableViewController {
     @IBAction func done(_ sender: Any) {
         if let item = itemToEdit, let text = textField.text {
             item.text = text
-            delegate?.addItemViewController(self, didFinishEditing: item)
+            delegate?.editItemViewController(self, didFinishEditing: item)
         } else {
             if let item = todoList?.createToDo() {
                 if let textFieldText = textField.text {
